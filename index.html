@@ -10,198 +10,103 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Georgia', serif;
-  background: linear-gradient(135deg, #ffe6ee, #fff0f5);
+  background: linear-gradient(180deg, #0f0c29, #302b63, #24243e);
   overflow: hidden;
+  font-family: 'Georgia', serif;
+  color: #fff;
 }
 
-/* HEADER */
-.header {
+/* TEXTE */
+.center {
   position: absolute;
-  top: 20px;
-  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 64px;
-  color: #c2185b;
-  font-weight: bold;
-  z-index: 10;
-}
-
-/* CONTAINER */
-.container {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-  padding: 40px;
-}
-
-/* COEURS CÔTÉS */
-.side {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 90px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  font-size: 42px;
-}
-
-.left { left: 10px; }
-.right { right: 10px; }
-
-.heart {
-  animation: beat 1.2s infinite;
-  color: #ff4d6d;
-}
-
-@keyframes beat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.3); }
-}
-
-/* STEPS */
-.step {
-  display: none;
-  max-width: 800px;
-  animation: fade 1.5s;
-}
-
-.step.active {
-  display: block;
+  max-width: 90%;
 }
 
 h1 {
-  font-size: 46px;
-  color: #c2185b;
+  font-size: 58px;
+  margin-bottom: 30px;
+  opacity: 0;
+  transition: opacity 2s;
 }
 
 p {
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1.7;
-  color: #444;
+  opacity: 0;
+  transition: opacity 2s;
 }
 
-/* BUTTONS */
-button {
-  margin-top: 45px;
-  padding: 20px 45px;
+/* COEURS */
+.heart {
+  position: absolute;
+  bottom: -40px;
   font-size: 26px;
-  border: none;
-  border-radius: 45px;
-  background: #ff5fa2;
-  color: white;
-  cursor: pointer;
+  opacity: 0.7;
+  animation: float 12s linear infinite;
 }
 
-button:hover {
-  background: #ff4081;
-}
-
-@keyframes fade {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-120vh); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">Emma ❤️</div>
-
-<div class="container">
-
-  <div class="side left">
-    <div class="heart">💓</div>
-    <div class="heart">💗</div>
-    <div class="heart">💖</div>
-    <div class="heart">💘</div>
-  </div>
-
-  <div class="side right">
-    <div class="heart">💘</div>
-    <div class="heart">💖</div>
-    <div class="heart">💗</div>
-    <div class="heart">💓</div>
-  </div>
-
-  <div id="step1" class="step active">
-    <h1>J’ai quelque chose à te dire… 💕</h1>
-    <p>
-      Avant de te poser une question importante,  
-      j’aimerais te faire voyager un peu avec moi… ✨
-    </p>
-    <button onclick="nextStep(2)">Continuer 💖</button>
-  </div>
-
-  <div id="step2" class="step">
-    <p>
-      Est-ce que tu crois aux moments simples  
-      qui rendent le cœur plus léger ? 🌸
-    </p>
-    <button onclick="nextStep(3)">Oui 💭</button>
-  </div>
-
-  <div id="step3" class="step">
-    <p>
-      Est-ce que tu penses que parfois,  
-      une personne peut illuminer une journée entière ? ☀️
-    </p>
-    <button onclick="nextStep(4)">Je crois 🥰</button>
-  </div>
-
-  <div id="step4" class="step">
-    <p>
-      Et si je te disais que depuis un moment…  
-      quelqu’un me fait sourire sans même le savoir 💗
-    </p>
-    <button onclick="playMusic(); nextStep(5)">Continuer 💞</button>
-  </div>
-
-  <div id="step5" class="step">
-    <h1>Emma… 💘</h1>
-    <p>
-      J’aime ta douceur.  
-      J’aime ton sourire.  
-      J’aime ce que tu fais ressentir sans même essayer.  
-      Tu rends les choses plus belles, simplement en étant toi.
-    </p>
-    <p>
-      Alors aujourd’hui, j’ai une question à te poser…
-    </p>
-
-    <h1>Veux-tu être ma Valentine ? 💍💖</h1>
-
-    <button onclick="alert('Tu viens de me rendre incroyablement heureux 💕')">
-      OUI 💘
-    </button>
-
-    <br><br>
-
-    <button onclick="alert('Je t’aimerai quand même ❤️')">
-      OUI aussi 😘
-    </button>
-  </div>
-
+<div class="center">
+  <h1 id="title">Emma ❤️</h1>
+  <p id="l1">Il y a des silences…</p>
+  <p id="l2">qui disent plus que mille mots.</p>
+  <p id="l3">Des regards qui restent.</p>
+  <p id="l4">Et un cœur qui change de rythme.</p>
+  <p id="l5"><strong>Alors j’ai une question…</strong></p>
+  <p id="l6"><strong>Veux-tu être ma Valentine ? 💖</strong></p>
 </div>
 
-<audio id="music" preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c2c6f7a6f.mp3" type="audio/mpeg">
+<!-- MUSIQUE -->
+<audio id="music">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/09/audio_1c8d6cfc58.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function nextStep(n) {
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step' + n).classList.add('active');
-}
+// Apparition texte synchronisée
+const sequence = [
+  ["title", 500],
+  ["l1", 2500],
+  ["l2", 4500],
+  ["l3", 6500],
+  ["l4", 8500],
+  ["l5", 11500],
+  ["l6", 14000]
+];
 
-function playMusic() {
-  document.getElementById('music').play();
+sequence.forEach(([id, delay]) => {
+  setTimeout(() => {
+    document.getElementById(id).style.opacity = 1;
+  }, delay);
+});
+
+// Musique au premier toucher (iPhone safe)
+document.body.addEventListener("click", () => {
+  document.getElementById("music").play();
+}, { once: true });
+
+// Coeurs animés
+for (let i = 0; i < 25; i++) {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (8 + Math.random() * 6) + "s";
+  document.body.appendChild(heart);
 }
 </script>
 
 </body>
 </html>
+
