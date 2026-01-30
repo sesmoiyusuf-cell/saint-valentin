@@ -3,110 +3,88 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Emma ❤️</title>
+<title>Emma</title>
 
 <style>
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: linear-gradient(180deg, #0f0c29, #302b63, #24243e);
-  overflow: hidden;
+  background: #0b0b0f;
   font-family: 'Georgia', serif;
-  color: #fff;
+  color: #f5f5f5;
+  overflow: hidden;
 }
 
-/* TEXTE */
-.center {
+.container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 700px;
   text-align: center;
-  max-width: 90%;
 }
 
-h1 {
-  font-size: 58px;
-  margin-bottom: 30px;
+.line {
+  font-size: 32px;
+  line-height: 1.6;
   opacity: 0;
-  transition: opacity 2s;
+  margin: 20px 0;
+  transition: opacity 2s ease;
 }
 
-p {
-  font-size: 30px;
-  line-height: 1.7;
-  opacity: 0;
-  transition: opacity 2s;
-}
-
-/* COEURS */
-.heart {
-  position: absolute;
-  bottom: -40px;
-  font-size: 26px;
-  opacity: 0.7;
-  animation: float 12s linear infinite;
-}
-
-@keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-120vh); }
+.title {
+  font-size: 48px;
+  margin-bottom: 40px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="center">
-  <h1 id="title">Emma ❤️</h1>
-  <p id="l1">Il y a des silences…</p>
-  <p id="l2">qui disent plus que mille mots.</p>
-  <p id="l3">Des regards qui restent.</p>
-  <p id="l4">Et un cœur qui change de rythme.</p>
-  <p id="l5"><strong>Alors j’ai une question…</strong></p>
-  <p id="l6"><strong>Veux-tu être ma Valentine ? 💖</strong></p>
+<div class="container">
+  <div id="t" class="line title">Emma</div>
+  <div id="l1" class="line">Il y a des choses…</div>
+  <div id="l2" class="line">qu’on ne dit pas tout de suite.</div>
+  <div id="l3" class="line">Pas parce qu’elles sont compliquées.</div>
+  <div id="l4" class="line">Mais parce qu’elles comptent.</div>
+  <div id="l5" class="line">Parce qu’elles viennent du cœur.</div>
+  <div id="l6" class="line">Et quand on les dit…</div>
+  <div id="l7" class="line">on espère juste être compris.</div>
+  <div id="l8" class="line"><strong>Alors j’ai une question.</strong></div>
+  <div id="l9" class="line"><strong>Veux-tu être ma Valentine ?</strong></div>
 </div>
 
-<!-- MUSIQUE -->
 <audio id="music">
   <source src="https://cdn.pixabay.com/download/audio/2022/10/09/audio_1c8d6cfc58.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// Apparition texte synchronisée
-const sequence = [
-  ["title", 500],
+const timing = [
+  ["t", 500],
   ["l1", 2500],
   ["l2", 4500],
   ["l3", 6500],
   ["l4", 8500],
-  ["l5", 11500],
-  ["l6", 14000]
+  ["l5", 10500],
+  ["l6", 12500],
+  ["l7", 14500],
+  ["l8", 17000],
+  ["l9", 20000]
 ];
 
-sequence.forEach(([id, delay]) => {
+timing.forEach(([id, delay]) => {
   setTimeout(() => {
     document.getElementById(id).style.opacity = 1;
   }, delay);
 });
 
-// Musique au premier toucher (iPhone safe)
+// musique au premier tap (iPhone)
 document.body.addEventListener("click", () => {
   document.getElementById("music").play();
 }, { once: true });
-
-// Coeurs animés
-for (let i = 0; i < 25; i++) {
-  let heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "💗";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (8 + Math.random() * 6) + "s";
-  document.body.appendChild(heart);
-}
 </script>
 
 </body>
 </html>
-
