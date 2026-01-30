@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,56 +5,47 @@
 <title>Emma ❤️</title>
 
 <style>
-body {
+html, body {
   margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #ffe6ee, #fff0f5);
-  font-family: Georgia, serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(180deg, #0f0c29, #302b63, #24243e);
   overflow: hidden;
+  font-family: 'Georgia', serif;
+  color: #fff;
 }
 
-.container {
+/* TEXTE */
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  max-width: 700px;
-  padding: 30px;
+  max-width: 90%;
 }
 
 h1 {
-  font-size: 48px;
-  color: #c2185b;
+  font-size: 58px;
+  margin-bottom: 30px;
+  opacity: 0;
+  transition: opacity 2s;
 }
 
 p {
-  font-size: 26px;
-  color: #444;
-  min-height: 120px;
+  font-size: 30px;
+  line-height: 1.7;
+  opacity: 0;
+  transition: opacity 2s;
 }
 
-button {
-  margin-top: 30px;
-  padding: 18px 40px;
-  font-size: 22px;
-  border: none;
-  border-radius: 30px;
-  background: #ff5fa2;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #ff4081;
-}
-
-/* cœurs qui montent */
+/* COEURS */
 .heart {
   position: absolute;
   bottom: -40px;
-  font-size: 30px;
-  animation: float 10s linear infinite;
-  opacity: 0.6;
+  font-size: 26px;
+  opacity: 0.7;
+  animation: float 12s linear infinite;
 }
 
 @keyframes float {
@@ -67,51 +57,52 @@ button:hover {
 
 <body>
 
-<div class="container">
-  <h1>Emma ❤️</h1>
-  <p id="text">J’ai quelque chose à te dire…</p>
-  <button onclick="next()">Continuer 💕</button>
+<div class="center">
+  <h1 id="title">Emma ❤️</h1>
+  <p id="l1">Il y a des silences…</p>
+  <p id="l2">qui disent plus que mille mots.</p>
+  <p id="l3">Des regards qui restent.</p>
+  <p id="l4">Et un cœur qui change de rythme.</p>
+  <p id="l5"><strong>Alors j’ai une question…</strong></p>
+  <p id="l6"><strong>Veux-tu être ma Valentine ? 💖</strong></p>
 </div>
 
+<!-- MUSIQUE -->
 <audio id="music">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c2c6f7a6f.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/09/audio_1c8d6cfc58.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-let step = 0;
-const text = document.getElementById("text");
-const music = document.getElementById("music");
+// Apparition texte synchronisée
+const sequence = [
+  ["title", 500],
+  ["l1", 2500],
+  ["l2", 4500],
+  ["l3", 6500],
+  ["l4", 8500],
+  ["l5", 11500],
+  ["l6", 14000]
+];
 
-function next() {
-  step++;
+sequence.forEach(([id, delay]) => {
+  setTimeout(() => {
+    document.getElementById(id).style.opacity = 1;
+  }, delay);
+});
 
-  // musique démarre AU PREMIER CLIC (iPhone OK)
-  if (step === 1) {
-    music.play();
-  }
+// Musique au premier toucher (iPhone safe)
+document.body.addEventListener("click", () => {
+  document.getElementById("music").play();
+}, { once: true });
 
-  if (step === 1) {
-    text.innerHTML = "Avant tout, je voulais te dire que tu comptes beaucoup pour moi.";
-  }
-  else if (step === 2) {
-    text.innerHTML = "Ta présence rend mes journées plus légères et mes sourires plus vrais.";
-  }
-  else if (step === 3) {
-    text.innerHTML = "Et depuis un moment… j’avais cette question dans le cœur.";
-  }
-  else if (step === 4) {
-    text.innerHTML = "<strong>Veux-tu être ma Valentine ? 💖</strong>";
-  }
-}
-
-// cœurs en arrière-plan
-for (let i = 0; i < 20; i++) {
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.innerHTML = "💗";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.animationDuration = (6 + Math.random() * 6) + "s";
-  document.body.appendChild(h);
+// Coeurs animés
+for (let i = 0; i < 25; i++) {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (8 + Math.random() * 6) + "s";
+  document.body.appendChild(heart);
 }
 </script>
 
