@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>💘 Une question importante</title>
+
+  <!-- Mobile friendly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff5f9e, #ffc371);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      touch-action: manipulation;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 420px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 30px 20px;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      width: 140px;
+      padding: 14px;
+      font-size: 1.1em;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    #yes {
+      background: white;
+      color: #ff4f8b;
+      font-weight: bold;
+    }
+
+    #no {
+      position: absolute;
+      background: #ff4f8b;
+      color: white;
+      left: 50%;
+      top: 60px;
+      transform: translateX(-50%);
+    }
+
+    #final {
+      display: none;
+      margin-top: 25px;
+      font-size: 1.4em;
+      line-height: 1.4;
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: float 4s linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Hey toi 💖</h1>
+  <p>Est-ce que tu veux être<br><strong>ma Saint-Valentin ?</strong></p>
+
+  <div class="buttons">
+    <button id="yes">Oui 🥰</button>
+    <button id="no">Non 🙃</button>
+  </div>
+
+  <div id="final">
+    💕💕💕<br>
+    Tu viens de rendre<br>
+    ma journée parfaite 😘
+  </div>
+</div>
+
+<div class="hearts" id="hearts"></div>
+
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const final = document.getElementById("final");
+  const hearts = document.getElementById("hearts");
+
+  noBtn.addEventListener("touchstart", moveNo);
+  noBtn.addEventListener("click", moveNo);
+
+  function moveNo() {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 60 - 30;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
+  yesBtn.addEventListener("click", () => {
+    final.style.display = "block";
+    spawnHearts();
+  });
+
+  function spawnHearts() {
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDelay = Math.random() * 2 + "s";
+      hearts.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 4000);
+    }
+  }
+</script>
+
+</body>
+</html>
